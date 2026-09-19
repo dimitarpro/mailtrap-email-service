@@ -1,10 +1,22 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 
 const app = express();
+
+// Целосна CORS конфигурација
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Рачно овозможување за Preflight (OPTIONS) барања
+app.options('*', cors());
+
 app.use(express.json());
 
-// Конфигурација на Mailtrap SMTP преку Environment Variables
+// Конфигурација на Mailtrap SMTP
 const transporter = nodemailer.createTransport({
   host: process.env.MAILTRAP_HOST || 'sandbox.smtp.mailtrap.io',
   port: parseInt(process.env.MAILTRAP_PORT || '2525'),
@@ -18,8 +30,9 @@ app.get('/', (req, res) => {
   res.send('Mailtrap Email Service raboti!');
 });
 
-// Endpoint за испраќање е-маил
 app.post('/send-email', async (req, res) => {
+  console.log('>>> Стигна барање за мејл! <<<', req.body);
+
   const { to, subject, html } = req.body;
 
   if (!to || !subject || !html) {
