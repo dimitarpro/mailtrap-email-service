@@ -1,29 +1,14 @@
-<<<<<<< HEAD
 {
   "name": "mailtrap-email-service",
   "version": "1.0.0",
+  "description": "Email proxy service for Mailtrap",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "cors": "^2.8.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "nodemailer": "^6.9.7"
+    "nodemailer": "^6.9.1"
   }
 }
-=======
-{
-  "name": "mailtrap-email-service",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.7"
-  }
-}
->>>>>>> 390b103 (Add CORS support and Mailtrap configuration)
